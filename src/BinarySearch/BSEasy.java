@@ -51,6 +51,14 @@ public class BSEasy {
         System.out.println("Question 441 ans: " + arrangeCoins(8));
         System.out.println("Question 441 ans: " + arrangeCoins(2147483647));
 
+        System.out.println(divider);
+        int[] nums3 = new int[] {-1, 0, 3, 5, 9, 12};
+        System.out.println("Question 704 ans: " + search(nums3, -1));
+        System.out.println("Question 704 ans: " + search(nums3, 12));
+        System.out.println("Question 704 ans: " + search(nums3, 9));
+        System.out.println("Question 704 ans: " + search(nums3, 15));
+        System.out.println("Question 704 ans: " + search(nums3, -5));
+
     }
 
     /**
@@ -202,6 +210,28 @@ public class BSEasy {
             }
         }
         return high;
+    }
+
+    /**
+     * #704 - 一次过！干得漂亮！
+     */
+    public static int search(int[] nums, int target) {
+        int low = 0;
+        int high = nums.length-1;
+
+        while(high >= low) {
+            int mid = low + (high-low)/2;
+            if( nums[mid] == target ) {
+                return mid;
+            }
+            else if( nums[mid] < target ) {
+                low = mid + 1;
+            }
+            else if( nums[mid] > target ) {
+                high = mid - 1;
+            }
+        }
+        return -1;
     }
 
 }
