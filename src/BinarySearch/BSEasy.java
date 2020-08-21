@@ -1,3 +1,7 @@
+package BinarySearch;
+
+import PrintUtility.PrintArrays;
+
 /***
  * This class is for Binary Search easy questions.
  * Binary Search points
@@ -32,6 +36,14 @@ public class BSEasy {
         System.out.println("Question 69 ans: " + sqrt2(123959393));
         System.out.println("Question 69 ans: " + sqrt2(1));
         System.out.println("Question 69 ans: " + sqrt2(0));
+
+        System.out.println(divider);
+        System.out.println("Question 367 ans: " + isPerfectSquare(5));
+        System.out.println("Question 367 ans: " + isPerfectSquare(14));
+        System.out.println("Question 367 ans: " + isPerfectSquare(64));
+        System.out.println("Question 367 ans: " + isPerfectSquare(4));
+        System.out.println("Question 367 ans: " + isPerfectSquare(1));
+
     }
 
     /**
@@ -121,6 +133,7 @@ public class BSEasy {
         int mid = x / 2;
 
         while( high >= low ) {
+            // DIVISION AVOIDS OVERFLOW !!!
             if( x/mid == mid ) {
                 return mid;
             }
@@ -135,4 +148,32 @@ public class BSEasy {
         }
         return high;
     }
+
+    /**
+     * #367
+     * NOTE : Pay attention to division... avoids overflow, but floor division result is dangerous for comparison.
+     */
+    public static boolean isPerfectSquare(int num) {
+        if( num == 1 ) { return true; }
+        int low = 0;
+        int high = num/2;
+
+        while( high >= low ) {
+            int mid = low + (high-low)/2;
+            double quotient = (double)num/(double)mid;
+            if( quotient == mid ) {
+                return true;
+            }
+            else if( quotient > mid ) {
+                low = mid + 1;
+            }
+            else if( quotient < mid ) {
+                high = mid - 1;
+            }
+        }
+        return false;
+    }
+
+
+
 }
