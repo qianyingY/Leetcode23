@@ -44,6 +44,13 @@ public class BSEasy {
         System.out.println("Question 367 ans: " + isPerfectSquare(4));
         System.out.println("Question 367 ans: " + isPerfectSquare(1));
 
+        System.out.println(divider);
+        System.out.println("Question 441 ans: " + arrangeCoins(1));
+        System.out.println("Question 441 ans: " + arrangeCoins(2));
+        System.out.println("Question 441 ans: " + arrangeCoins(3));
+        System.out.println("Question 441 ans: " + arrangeCoins(8));
+        System.out.println("Question 441 ans: " + arrangeCoins(2147483647));
+
     }
 
     /**
@@ -174,6 +181,27 @@ public class BSEasy {
         return false;
     }
 
+    /**
+     * 441
+     */
+    public static int arrangeCoins(int n) {
+        int low = 0;
+        int high = n;
 
+        while(high >= low) {
+            long mid = low + (high-low)/2;
+            long sum = ( mid*(mid+1) )/2;
+            if( sum == n ) {
+                return (int) mid;
+            }
+            else if( sum > n ) {
+                high = (int)mid-1;
+            }
+            else if( sum < n ) {
+                low = (int)mid+1;
+            }
+        }
+        return high;
+    }
 
 }
