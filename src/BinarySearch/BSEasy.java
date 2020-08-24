@@ -59,6 +59,20 @@ public class BSEasy {
         System.out.println("Question 704 ans: " + search(nums3, 15));
         System.out.println("Question 704 ans: " + search(nums3, -5));
 
+        System.out.println(divider);
+        char[] letters = new char[] {'c', 'f', 'j'};
+        System.out.println("Question 744 ans: " + nextGreatestLetter(letters, 'a'));
+        System.out.println("Question 744 ans: " + nextGreatestLetter(letters, 'c'));
+        System.out.println("Question 744 ans: " + nextGreatestLetter(letters, 'k'));
+        System.out.println("Question 744 ans: " + nextGreatestLetter(letters, 'g'));
+
+        System.out.println(divider);
+        int[] nums4 = new int[] {0, 1, 0};
+        int[] nums5 = new int[] {0, 1, 2, 0};
+        int[] nums6 = new int[] {0, 1, 1, 0};
+        System.out.println("Question 852 ans: " + peakIndexInMountainArray(nums4));
+        System.out.println("Question 852 ans: " + peakIndexInMountainArray(nums5));
+        System.out.println("Question 852 ans: " + peakIndexInMountainArray(nums6));
     }
 
     /**
@@ -232,6 +246,49 @@ public class BSEasy {
             }
         }
         return -1;
+    }
+
+    /**
+     * #744 - need to relook return statement!
+     */
+    public static char nextGreatestLetter(char[] letters, char target) {
+        int low = 0;
+        int high = letters.length-1;
+
+        while( high > low ) {
+            int mid = low + (high-low) / 2;
+            if( letters[mid] <= target) {
+                low = mid + 1;
+            }
+            else if( letters[mid] > target ) {
+                high = mid;
+            }
+        }
+
+        if( high == letters.length-1 && letters[high] <= target) {
+            return letters[0];
+        }
+        return letters[high];
+        //return letters[low % letters.length]; - solution 看到的解法... brilliant..
+    }
+
+    /**
+     * #852
+     */
+    public static int peakIndexInMountainArray(int[] A) {
+        int low = 0;
+        int high = A.length-1;
+
+        while( high > low ) {
+            int mid = low + (high-low)/2;
+            if( A[mid] >= A[mid+1] ) {
+                high = mid;
+            }
+            if( A[mid] >= A[mid-1] ) {
+                low = mid;
+            }
+        }
+        return low;
     }
 
 }
